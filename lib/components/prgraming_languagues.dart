@@ -18,6 +18,14 @@ class ProgrammingLanguages extends StatefulWidget {
 class _ProgrammingLanguagesState extends State<ProgrammingLanguages> {
   int cont = 0;
 
+  bool imageVerify() {
+    if (widget.logoImage.contains("http")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,10 +49,15 @@ class _ProgrammingLanguagesState extends State<ProgrammingLanguages> {
                       SizedBox(
                         width: 75,
                         height: 100,
-                        child: Image.asset(
-                          widget.logoImage,
-                          fit: BoxFit.cover,
-                        ),
+                        child: !imageVerify()
+                            ? Image.asset(
+                                widget.logoImage,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.logoImage,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                       SizedBox(
                         width: 170,
